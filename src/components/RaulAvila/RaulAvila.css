@@ -1,0 +1,162 @@
+html,body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+    font-family: Arial, sans-serif;
+
+}
+main{
+    background-color: #000;
+    height: 100vh;
+}
+/*Navbar Css */
+.raulAvilaNav {
+    margin: 0;
+    padding:0;
+    height: 10vh; 
+   background-color: transparent;
+}
+.raulAvilaHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding-top: 20px;
+    margin: 0
+}
+.raLink{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    text-decoration: none;
+
+}
+
+.raUl{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+
+}
+
+/*Home css */
+.fullscreen-bg{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: hidden;
+z-index: -1000;
+}
+.video {
+    min-width: 100%; 
+    min-height: 100%; 
+  
+    /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+    width: auto;
+    height: auto;
+  
+    /* Center the video */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: -1000;
+}
+/*Bio Css */
+#bgimg {
+    z-index: -1;
+    overflow: hidden;
+    position:absolute;
+    z-index:0;
+    top: 18%;
+    left: 7%;
+    width: 50%; 
+    height: 67vh;
+}
+
+#bio {
+    position: absolute;
+    right: 7%;
+    width: 42%;
+    margin-top: 3%;
+    background-color: #000;
+    opacity: 0.7;
+    text-align: left;
+    font-size: 19px;
+    overflow: hidden;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: white;
+    margin-bottom: 5px; 
+    padding-bottom: 5px; 
+}
+/*Press Css */
+
+.rows{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.pressImg{
+    padding-right: 80px;
+    width: 15em;
+}
+
+/*ClientList Css */
+
+.listContainer{
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.listColumn{
+    text-decoration: none;
+    list-style-type: none;
+    font-size: 18px;
+    padding-right: 50px;
+}
+
+.listColumn li {
+    padding-top: 5px;
+}
+
+/*ClientList Css */
+
+.contactContainer{
+display: flex;
+justify-content: center;
+margin-top: 100px;
+line-height: 24px;
+}
+
+.contactSub{
+    display: inline-block;
+    align-items: center;
+}
+
+.contactAddress{
+    padding-right: 100px;
+}
+
+.contactAddress h1 {
+    color: white;
+    font-size: 18px;
+}
+
+.contactAddress a {
+    text-decoration: none;
+    color: white;
+}
