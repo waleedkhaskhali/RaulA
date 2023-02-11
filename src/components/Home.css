@@ -18,6 +18,7 @@ html,body {
     background-position: center;
     background-size: cover;
     filter: brightness(50%);
+    transition: 0.8s;
 }
 .nav{
     display: flex;
@@ -34,6 +35,10 @@ html,body {
     color: white;
     text-decoration: none;
     font-size: 60px;
+}
+.raul1:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 .raul2{
     display: flex;
@@ -55,6 +60,10 @@ html,body {
     text-decoration: none;
     font-size: 50px;
     padding: 50px;
+}
+.links:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 #raulBanner{
     animation: raulAnimation 2s;

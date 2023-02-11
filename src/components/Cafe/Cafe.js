@@ -11,20 +11,6 @@ const Cafe = () => {
   const [showCafeMenu, setShowCafeMenu] = useState(false);
   const [showWineMenu, setShowWineMenu] = useState(false);
 
-  function showCafeMenuHandler() {
-    if (!showCafeMenu) {
-      setShowCafeMenu(true);
-      setShowWineMenu(false);
-    }
-  }
-
-  function showWineMenuHandler() {
-    if (!showWineMenu) {
-      setShowCafeMenu(false);
-      setShowWineMenu(true);
-    }
-  }
-
   return (
     <div className="cafepage">
       <section className="cafeBackground">
@@ -41,7 +27,9 @@ const Cafe = () => {
         <a
           id={showCafeMenu || showWineMenu ? "XBtn" : ""}
           onClick={() => {
-            setShowCafeMenu(false) && setShowWineMenu(false);
+            if (showCafeMenu) {
+              setShowCafeMenu(false);
+            } else setShowWineMenu(false);
           }}
         >
           X
@@ -58,7 +46,10 @@ const Cafe = () => {
           <div>
             <a
               onClick={() => {
-                showCafeMenuHandler();
+                if (!showCafeMenu) {
+                  setShowCafeMenu(true);
+                  setShowWineMenu(false);
+                } else setShowWineMenu(false);
               }}
             >
               Cafe Menu
@@ -68,7 +59,10 @@ const Cafe = () => {
           <div>
             <a
               onClick={() => {
-                showWineMenuHandler();
+                if (!showWineMenu) {
+                  setShowWineMenu(true);
+                  setShowCafeMenu(false);
+                } else setShowCafeMenu(false);
               }}
             >
               Wine Menu
