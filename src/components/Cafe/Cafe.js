@@ -25,7 +25,7 @@ const Cafe = () => {
       </section>
       <div id={showCafeMenu || showWineMenu ? "menuDiv" : ""}>
         <a
-          id={showCafeMenu || showWineMenu ? "XBtn" : ""}
+          className={showCafeMenu || showWineMenu ? "XBtn" : "hide"}
           onClick={() => {
             if (showCafeMenu) {
               setShowCafeMenu(false);

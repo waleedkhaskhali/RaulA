@@ -3,20 +3,189 @@
     margin: 0;
 }
 
+body{
+    background-color: #595959;
+}
+
+.vidPar{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+.raulVideo{
+    width: 100vw;
+    z-index: -1000;
+    filter: brightness(50%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+} 
+#logo{
+    width: 8%;
+    margin-left: 46%;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.hoverDiv{
+        color: black;
+        display: block;
+        position: fixed;
+        background-color: #6d6d6d;
+        border: 1px solid rgba(0,0,0,0.6);
+        box-shadow: 0px 1px 1px 0px rgb(0 0 0 / 20%);
+        z-index: 107;
+        overflow: auto;
+        transition: 0.4s ease-in-out;
+        text-align: center;
+        animation: fadeInNavBar 1s;
+    min-width: 180px;
+    right: 8%;
+    top: 8%;
+    min-height: 100px;
+    box-shadow: 0px 1px 1px 0px rgb(0 0 0 / 20%);
+    padding: 40px 0px 0px 0px;
+
+}
+span {
+    font-family: myFirstFont;
+    font-weight: bolder;
+    color: white;
+    text-transform: none;
+    transition: 0.2s ease-in-out;
+}
+span a:hover {
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+span a {
+    font-family: myFirstFont;
+    font-weight: bolder;
+    color: white;
+    text-transform: capitalize;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    transition: 0.2s ease-in-out;
+}
+.hides{
+    display: none;
+}
+.modal {
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.5);
+    padding-top: 8vh;
+    display: block;
+}
+.modal-content {
+    background-color: #6d6d6d;
+    margin: 5% auto 15% auto;
+    border: 1px solid rgba(0,0,0,0.5);
+    width: 500px;
+    height: auto;
+    padding-bottom: 50px;
+}
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 24px 0;
+    position: relative;
+}
+.imgcontainer p {
+    font-size: 40px;
+    letter-spacing: 4px;
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.close {
+    position: absolute;
+    right: 50px;
+    top: 10px;
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal-content .centerIt label {
+    letter-spacing: 4px;
+    font-size: 22px;
+    font-weight: 500;
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+input[type=text], input[type=password] {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 15px 30px;
+    display: inline-block;
+    outline: none;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.centerIt button {
+    background: #cfbb63;
+    color: rgba(0,0,0,0.6);
+    padding: 14px 20px;
+    margin: 4px auto;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+    font-family: myFirstFont;
+    border-radius: 5px;
+}
+.centerIt span.psw a {
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 20px;
+}
+.centerIt #accountCreate {
+    padding-left: 30px;
+}
+.centerIt {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+.centerIt span.psw {
+    margin-top: 50px;
+}
 .raulNav{
     position: fixed;
     width: 100vw;
+    
 }
 .navScroll{
     position: fixed;
     width: 100vw;
     background: #595959;
+    transition: 0.8s;
+    box-shadow: rgb(0 0 0 / 50%) 0px 0px 5px 1px;
 }
 .topNav{
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 5vh;
+    padding: 15px 50px;
 }
 
 .topDivs{
@@ -27,15 +196,303 @@
     justify-content: center;
     align-items: center;
     height: 5vh;
+    animation: raulAnimation 2s;
 }
 
 .link{
     text-decoration: none;
     list-style-type: none;
+    color: white;
     padding: 0px 10px;
+    cursor: pointer;
 }
 
-.test{
-    height: 150vh;
-    overflow-y: auto;
+.btmlink{
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+    padding: 0px 30px;
+    font-size: 20px;
 }
+
+.wheelContainer{
+    position: absolute;
+    height: 80vh;
+    width: 100vw;
+    top: 100vh;
+    z-index: -1000;
+}
+.featureProductsHeading {
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    justify-content: center;
+    font-size: 60px;
+
+    margin-top: 10vh;
+    padding-top: 20px;
+    padding-bottom: 100px;
+    border-top: 2px solid #cfbb63;
+    z-index: 1000;
+}
+.marquee {
+  width: 100%;
+  height: 650px;
+  background: transparent;
+  border-bottom: 2px solid #cfbb63;
+  z-index: 1000;
+}
+
+
+.marqueetext{
+    position: relative;
+  color: black;
+  font-weight: 400;
+  white-space: nowrap;
+  font-size: 3em;
+  font-weight: 700;
+  left: 25%;
+bottom: 25vh;
+z-index: 1000;
+opacity: 0;
+  }
+  
+.marquee__img:hover + .marqueetext{
+    opacity: 1;
+}
+
+
+.marquee__img {
+  width: 500px;
+    height: 40vh;
+  margin: 0 4vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1000;
+}
+
+.marquee__inner {
+
+    animation: marquee 40s linear infinite;
+    display: flex;
+    width: calc(100px * 2);
+}
+.categorySection{
+        position: absolute;
+        height: 90vh;
+        width: 100vw;
+        top: 180vh;
+        z-index: -1000;
+        border-bottom: 2px solid #cfbb63;
+}
+
+.categoryHeading{
+    display: flex;
+    justify-content: center;
+    color: #cfbb63;
+    font-size: 60px;
+    padding: 80px 0px 40px 0px;
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.categoryImg{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 60vh;
+    z-index: -1;
+    margin-left: 100px;
+    margin-top: 40px;
+}
+.tagBanner{
+    display: flex;
+    justify-content: center;
+    color: #cfbb63;
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.liBanner{
+    padding-right: 30px;
+    text-decoration: none;
+    list-style: none;
+    color: #cfbb63;
+
+
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-transform: lowercase;
+    padding: 14px 16px;
+    font-size: 20px;
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: myFirstFont;
+    font-weight: bolder;
+    letter-spacing: 3px;
+    transition: 0.4s ease-in-out;
+}
+
+.liBanner:hover{
+    border-bottom: 1px solid #cfbb63;
+}
+.imgPar{
+    display: grid;
+    grid-template-columns: 35% 60%;
+    text-align: center;
+}
+.tagNbtn {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 200px 40px 200px 40px;
+    width: 350px;
+    text-align: center;
+
+    
+}
+
+.tagNbtn div h2 {
+    display: flex;
+    justify-content: center;
+    color: #cfbb63;
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 80px;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+.shopBtn{
+    display: flex;
+    justify-content: center;
+    color: #cfbb63;
+}
+
+.shopBtn button {
+    outline: none;
+    border: none;
+    border: 2px solid #cfbb63;
+    padding: 10px;
+    font-size: 23px;
+    background-color: transparent;
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 150px;
+    font-family: myFirstFont;
+    margin: 20px 0px 0px 0px;
+    font-weight: bolder;
+    transition: 0.4s ease-in-out;
+}
+
+.shopBtn button:hover {
+    font-size: 24px;
+    border: 5px solid #cfbb63;
+    cursor: pointer;
+}
+
+.layout{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 280vh;
+    z-index: -1000;
+}
+
+.layout div h1{
+    display: flex;
+    justify-content: center;
+    font-size: 100px;
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 75px;
+}
+
+.layoutImg{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    background-position: center;
+    background-size: cover;
+}
+
+.layoutImg img{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    background-position: center;
+    background-size: cover;
+}
+
+.collection{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 410vh;
+    z-index: -1000;
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.collection div h1{
+    display: flex;
+    justify-content: center;
+    font-size: 100px;
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 75px;
+}
+.collectionImg{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 90vh;
+}
+
+.collectionImg img{
+    width: 40%;
+    height: 90vh;
+}
+@keyframes marquee {
+	0% { transform: translateX(100%); }
+	100% { transform: translateX(calc(-500px * 15))}
+}
+@keyframes fadeinNavBar {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;}
+}
+
+
+@keyframes raulAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    35% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    65% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
