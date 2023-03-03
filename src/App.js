@@ -8,6 +8,7 @@ import ClientList from "./components/RaulAvila/ClientList";
 import Contact from "./components/RaulAvila/Contact";
 import Press from "./components/RaulAvila/Press";
 import RaulAvila from "./components/RaulAvila/RaulAvila";
+import AddProducts from "./components/AddProducts";
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path="/clientlist" element={<ClientList />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/Cafe" element={<Cafe />} />
+          <Route path="/sellproducts" element={<AddProducts />} />
         </Routes>
       </Router>
     );

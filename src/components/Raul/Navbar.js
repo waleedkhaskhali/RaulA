@@ -12,6 +12,7 @@ import "./Raul.css";
 
 const Navbar = ({ scrollPosition }) => {
   const [loginBtn, setLoginBtn] = useState(false);
+  const [logoutBtn, setLogoutBtn] = useState(true);
   const [registerClick, setRegisterClick] = useState(false);
   const [loginClick, setLoginClick] = useState(false);
 
@@ -103,11 +104,11 @@ const Navbar = ({ scrollPosition }) => {
             <li
               className={user?.email ? "link" : "hides"}
               id="registerIcon"
-              onClick={() => setLoginBtn(!loginBtn)}
+              onClick={() => setLogoutBtn(true)}
             >
               Logout
               <div
-                className={loginBtn ? "hoverDiv" : "hides"}
+                className={logoutBtn ? "hoverDiv" : "hides"}
                 title="Login or Register"
               >
                 <span>
@@ -118,6 +119,10 @@ const Navbar = ({ scrollPosition }) => {
                   <a href="#" onClick={logout}>
                     Logout
                   </a>
+                </span>
+                <br />
+                <span>
+                  <Link to="/sellproducts">SellProducts</Link>
                 </span>
               </div>
             </li>
