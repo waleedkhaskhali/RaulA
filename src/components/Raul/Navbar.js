@@ -11,8 +11,9 @@ import raulLogo from "../../assets/raullogo.png";
 import "./Raul.css";
 
 const Navbar = ({ scrollPosition }) => {
-  const [loginBtn, setLoginBtn] = useState(false);
-  const [logoutBtn, setLogoutBtn] = useState(true);
+  const [userLoginBtn, setUserLoginBtn] = useState(false);
+  const [userLogoutBtn, setUserLogoutBtn] = useState(false);
+
   const [registerClick, setRegisterClick] = useState(false);
   const [loginClick, setLoginClick] = useState(false);
 
@@ -78,37 +79,39 @@ const Navbar = ({ scrollPosition }) => {
             <Link to="/Home" className="link" id="homeIcon">
               Home
             </Link>
-            <li
+            <div
               className={user?.email ? "hides" : "link"}
-              id="registerIcon"
-              onClick={() => setLoginBtn(!loginBtn)}
+              onMouseEnter={() => setUserLoginBtn(true)}
+              onMouseLeave={() => setUserLoginBtn(false)}
             >
               Login
-              <div
-                className={loginBtn ? "hoverDiv" : "hides"}
-                title="Login or Register"
-              >
-                <span>
-                  <a href="#" onClick={() => setLoginClick(true)}>
-                    Login
-                  </a>
-                </span>
-                <br />
-                <span>
-                  <a href="#" onClick={() => setRegisterClick(true)}>
-                    Register
-                  </a>
-                </span>
-              </div>
-            </li>
+              {userLoginBtn ? (
+                <div>
+                  <div
+                    className={userLoginBtn ? "hoverDiv" : "hides"}
+                    title="Login or Register"
+                  >
+                    <span>
+                      <a onClick={() => setLoginClick(true)}>Login</a>
+                    </span>
+                    <br />
+                    <span>
+                      <a onClick={() => setRegisterClick(true)}>Register</a>
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
             <li
               className={user?.email ? "link" : "hides"}
               id="registerIcon"
-              onClick={() => setLogoutBtn(true)}
+              onClick={() => setUserLogoutBtn(true)}
             >
               Logout
               <div
-                className={logoutBtn ? "hoverDiv" : "hides"}
+                className={userLogoutBtn ? "hoverDiv" : "hides"}
                 title="Login or Register"
               >
                 <span>
@@ -153,7 +156,6 @@ const Navbar = ({ scrollPosition }) => {
       <div id="id01" className={registerClick ? "modal" : "hides"}>
         <form class="modal-content animate">
           <div class="imgcontainer">
-            <p>current user: {user?.email}</p>
             <p> REGISTER</p>
             <span
               onClick={() => setRegisterClick(false)}
@@ -166,24 +168,22 @@ const Navbar = ({ scrollPosition }) => {
           <div>
             <div class="centerIt">
               <p>
-                <label for="id_username">email address:</label>{" "}
+                <label>email address:</label>{" "}
                 <input
                   type="text"
                   name="username"
                   required=""
-                  id="id_username"
                   onChange={(e) => {
                     setRegisterEmail(e.target.value);
                   }}
                 />
               </p>
               <p>
-                <label for="id_password">Password:</label>{" "}
+                <label>Password:</label>{" "}
                 <input
                   type="password"
                   name="password"
                   required=""
-                  id="id_password"
                   onChange={(e) => {
                     setRegisterPassword(e.target.value);
                   }}
@@ -213,10 +213,9 @@ const Navbar = ({ scrollPosition }) => {
       <div id="id01" className={loginClick ? "modal" : "hides"}>
         <form class="modal-content animate">
           <div class="imgcontainer">
-            <p>current user: {user?.email}</p>
             <p> LOGIN</p>
             <span
-              onClick={() => setLoginClick(false)}
+              onClick={() => (loginClick(true) ? setLoginClick(false) : null)}
               className="close"
               title="Close Register Pop-up"
             >
@@ -226,24 +225,22 @@ const Navbar = ({ scrollPosition }) => {
           <div>
             <div class="centerIt">
               <p>
-                <label for="id_username">email address:</label>
+                <label>email address:</label>
                 <input
                   type="text"
                   name="username"
                   required=""
-                  id="id_username"
                   onChange={(e) => {
                     setLoginEmail(e.target.value);
                   }}
                 />
               </p>
               <p>
-                <label for="id_password">password:</label>
+                <label>password:</label>
                 <input
                   type="password"
                   name="password"
                   required=""
-                  id="id_password"
                   onChange={(e) => {
                     setLoginPassword(e.target.value);
                   }}

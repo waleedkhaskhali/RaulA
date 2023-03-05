@@ -39,40 +39,30 @@ export const Raul = () => {
       setWallart(false);
       setTabletop(false);
       setDecorative(false);
-      console.log(category);
-      console.log(furniture);
     } else if (category === "decorative accessories") {
       setDecorative(true);
       setFurniture(false);
       setFloral(false);
       setWallart(false);
       setTabletop(false);
-      console.log(category);
-      console.log(decorative);
     } else if (category === "wall art") {
       setWallart(true);
       setFurniture(false);
       setFloral(false);
       setDecorative(false);
       setTabletop(false);
-      console.log(category);
-      console.log(wallart);
     } else if (category === "floral") {
       setFloral(true);
       setFurniture(false);
       setWallart(false);
       setDecorative(false);
       setTabletop(false);
-      console.log(category);
-      console.log(floral);
     } else if (category === "table top") {
       setTabletop(true);
       setFurniture(false);
       setFloral(false);
       setWallart(false);
       setDecorative(false);
-      console.log(category);
-      console.log(tabletop);
     }
   };
   return (
