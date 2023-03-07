@@ -9,6 +9,7 @@ import Contact from "./components/RaulAvila/Contact";
 import Press from "./components/RaulAvila/Press";
 import RaulAvila from "./components/RaulAvila/RaulAvila";
 import AddProducts from "./components/AddProducts";
+import Floral from "./components/Raul/Products/Floral";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Home" element={<Raul />} />
+          <Route path="/Floral" element={<Floral />} />
           <Route path="/Raul_Inc/Home" element={<RaulAvila />} />
           <Route path="/bio" element={<Bio />} />
           <Route path="/press" element={<Press />} />

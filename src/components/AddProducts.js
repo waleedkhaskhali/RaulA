@@ -25,9 +25,9 @@ const AddProducts = () => {
   const [successMsg, setSuccessMsg] = useState("");
   const [uploadError, setUploadError] = useState("");
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
+  // onAuthStateChanged(auth, (currentUser) => {
+  //   setUser(currentUser);
+  // });
 
   const types = ["image/jpg", "image/jpeg", "image/png", "image/PNG"];
 
@@ -89,85 +89,82 @@ const AddProducts = () => {
   return (
     <div>
       <Navbar />
-      {user && user.email === "wkhaskhalu@gmail.com" ? (
-        <div
-          style={{ position: "absolute", top: "15vh" }}
-          className="addprod-container"
-        >
-          <form onSubmit={handleAddProduct} className="addprod-form">
-            <p>Add Data</p>
-            {successMsg && (
-              <>
-                <div className="success-msg">{successMsg}</div>
-              </>
-            )}
-            {uploadError && (
-              <>
-                <div className="error-msg">{uploadError}</div>
-              </>
-            )}
 
-            <label>Product Title</label>
-            <input
-              onChange={(e) => setProductTitle(e.target.value)}
-              type="text"
-              placeholder="Product Title"
-            />
-            <label>Product Type</label>
-            <input
-              onChange={(e) => setProductType(e.target.value)}
-              type="text"
-              placeholder="Product Type"
-            />
-            <label>Brand Name </label>
-            <input
-              onChange={(e) => setBrand(e.target.value)}
-              type="text"
-              placeholder="Brand Name"
-            />
-            <label>warranty</label>
-            <input
-              onChange={(e) => setWarranty(e.target.value)}
-              type="text"
-              placeholder="Product Warranty"
-            />
-            <label>Image</label>
-            <input onChange={handleProductImg} type="file" />
-            {imageError && (
-              <>
-                <div className="error-msg">{imageError}</div>
-              </>
-            )}
-            <label>Key Specifications</label>
-            <textarea
-              onChange={(e) => setKeyspecs(e.target.value)}
-              placeholder="Enter some key specifications"
-            ></textarea>
+      <div
+        style={{ position: "absolute", top: "15vh" }}
+        className="addprod-container"
+      >
+        <form onSubmit={handleAddProduct} className="addprod-form">
+          <p>Add Data</p>
+          {successMsg && (
+            <>
+              <div className="success-msg">{successMsg}</div>
+            </>
+          )}
+          {uploadError && (
+            <>
+              <div className="error-msg">{uploadError}</div>
+            </>
+          )}
 
-            <label>Description</label>
-            <textarea
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Describe your Product in breif"
-            ></textarea>
-            <label>Price Without Tax -</label>
-            <input
-              onChange={(e) => setPrice(e.target.value)}
-              type="text"
-              placeholder="Enter Price without tax"
-            />
-            <label>Customer Support</label>
-            <input
-              onChange={(e) => setCustomersupport(e.target.value)}
-              type="text"
-              placeholder="Customer Support Email, Phone or address"
-            />
+          <label>Product Title</label>
+          <input
+            onChange={(e) => setProductTitle(e.target.value)}
+            type="text"
+            placeholder="Product Title"
+          />
+          <label>Product Type</label>
+          <input
+            onChange={(e) => setProductType(e.target.value)}
+            type="text"
+            placeholder="Product Type"
+          />
+          <label>Brand Name </label>
+          <input
+            onChange={(e) => setBrand(e.target.value)}
+            type="text"
+            placeholder="Brand Name"
+          />
+          <label>warranty</label>
+          <input
+            onChange={(e) => setWarranty(e.target.value)}
+            type="text"
+            placeholder="Product Warranty"
+          />
+          <label>Image</label>
+          <input onChange={handleProductImg} type="file" />
+          {imageError && (
+            <>
+              <div className="error-msg">{imageError}</div>
+            </>
+          )}
+          <label>Key Specifications</label>
+          <textarea
+            onChange={(e) => setKeyspecs(e.target.value)}
+            placeholder="Enter some key specifications"
+          ></textarea>
 
-            <button type="submit">Add</button>
-          </form>
-        </div>
-      ) : (
-        <div>You dont have access to the products</div>
-      )}
+          <label>Description</label>
+          <textarea
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Describe your Product in breif"
+          ></textarea>
+          <label>Price Without Tax -</label>
+          <input
+            onChange={(e) => setPrice(e.target.value)}
+            type="text"
+            placeholder="Enter Price without tax"
+          />
+          <label>Customer Support</label>
+          <input
+            onChange={(e) => setCustomersupport(e.target.value)}
+            type="text"
+            placeholder="Customer Support Email, Phone or address"
+          />
+
+          <button type="submit">Add</button>
+        </form>
+      </div>
     </div>
   );
 };

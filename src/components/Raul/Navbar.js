@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
-import { auth } from "../../firebase-config";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import raulLogo from "../../assets/raullogo.png";
 import "./Raul.css";
 
 const Navbar = ({ scrollPosition }) => {
+  const [decorativeHover, setDecorativeHover] = useState(false);
+
   const [userLoginBtn, setUserLoginBtn] = useState(false);
   const [userLogoutBtn, setUserLogoutBtn] = useState(false);
 
@@ -21,40 +17,51 @@ const Navbar = ({ scrollPosition }) => {
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [confirmRegisterPassword, setConfirmRegisterPassword] = useState("");
 
-  const [user, setUser] = useState({});
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const history = useNavigate();
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
+  const {
+    currentUser,
+    login,
+    register,
+    logout,
+    resetPassword,
+    updateEmail,
+    updatePassword,
+  } = useAuth();
 
-  const register = async () => {
-    try {
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      );
-      console.log(user);
-    } catch (error) {
-      console.log(error.message);
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+
+    if (registerPassword !== confirmRegisterPassword) {
+      return setError("Passwords do not match");
     }
-  };
-  const login = async () => {
+
     try {
-      const user = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      console.log(user);
+      setError("");
+      setLoading(true);
+      await register(registerEmail, registerPassword);
+      history.push("/cart");
     } catch (error) {
-      console.log(error.message);
+      setError(error);
     }
+
+    setLoading(false);
   };
 
-  const logout = async () => {
-    await signOut(auth);
+  const handleLoginSubmit = async () => {
+    try {
+      setError("");
+      setLoading(true);
+      await login(loginEmail, loginPassword);
+    } catch (error) {
+      setError(error);
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -80,9 +87,8 @@ const Navbar = ({ scrollPosition }) => {
               Home
             </Link>
             <div
-              className={user?.email ? "hides" : "link"}
-              onMouseEnter={() => setUserLoginBtn(true)}
-              onMouseLeave={() => setUserLoginBtn(false)}
+              className={currentUser?.email ? "hides" : "link"}
+              onClick={() => setUserLoginBtn(true)}
             >
               Login
               {userLoginBtn ? (
@@ -105,7 +111,7 @@ const Navbar = ({ scrollPosition }) => {
               )}
             </div>
             <li
-              className={user?.email ? "link" : "hides"}
+              className={currentUser?.email ? "link" : "hides"}
               id="registerIcon"
               onClick={() => setUserLogoutBtn(true)}
             >
@@ -136,25 +142,50 @@ const Navbar = ({ scrollPosition }) => {
           </div>
         </ul>
         <ul className={scrollPosition < 50 ? "hide" : "bottomNav"}>
-          <Link to="Decorative-accessories" className="btmlink">
+          <Link
+            to="/Decorative-accessories"
+            className="btmlink"
+            onMouseEnter={() => setDecorativeHover(true)}
+          >
             decorative accessories
           </Link>
+
           <Link to="/Furniture" className="btmlink">
             furniture
           </Link>
+
           <Link to="/Floral" className="btmlink">
             floral
           </Link>
+
           <Link to="/Sale" className="btmlink">
             sale
           </Link>
+
           <Link to="/Venue" className="btmlink">
             venue bookings
           </Link>
         </ul>
+        <ul className={decorativeHover ? "decorativeLinks" : "hides"}>
+          <Link to="/candlelight" className="btmlink">
+            candlelight
+          </Link>
+          <Link to="/decorative-objects" className="btmlink">
+            decorative objects
+          </Link>
+          <Link to="/urns" className="btmlink">
+            urns
+          </Link>
+          <Link to="/vases&cachepots" className="btmlink">
+            vases and cachepots
+          </Link>
+          <Link to="/dinnerware" className="btmlink">
+            dinnerware
+          </Link>
+        </ul>
       </nav>
       <div id="id01" className={registerClick ? "modal" : "hides"}>
-        <form class="modal-content animate">
+        <form class="modal-content animate" onSubmit={handleRegisterSubmit}>
           <div class="imgcontainer">
             <p> REGISTER</p>
             <span
@@ -189,11 +220,22 @@ const Navbar = ({ scrollPosition }) => {
                   }}
                 />
               </p>
+              <p>
+                <label>Password:</label>{" "}
+                <input
+                  type="password"
+                  name="password"
+                  required=""
+                  onChange={(e) => {
+                    setConfirmRegisterPassword(e.target.value);
+                  }}
+                />
+              </p>
               <button
                 value="Login"
                 name="login"
                 type="submit"
-                onClick={register}
+                onClick={handleRegisterSubmit}
               >
                 Register
               </button>
@@ -211,11 +253,11 @@ const Navbar = ({ scrollPosition }) => {
         </form>
       </div>
       <div id="id01" className={loginClick ? "modal" : "hides"}>
-        <form class="modal-content animate">
+        <form class="modal-content animate" onSubmit={handleLoginSubmit}>
           <div class="imgcontainer">
             <p> LOGIN</p>
             <span
-              onClick={() => (loginClick(true) ? setLoginClick(false) : null)}
+              onClick={() => setLoginClick(false)}
               className="close"
               title="Close Register Pop-up"
             >
@@ -246,7 +288,12 @@ const Navbar = ({ scrollPosition }) => {
                   }}
                 />
               </p>
-              <button value="Login" name="login" type="submit" onClick={login}>
+              <button
+                value="Login"
+                name="login"
+                type="submit"
+                onClick={handleLoginSubmit}
+              >
                 Login
               </button>
             </div>
