@@ -2,49 +2,51 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
 import { db } from "../../../firebase-config";
 import { collection, getDocs } from "firebase/firestore";
-import ProductContainer from "./ProductContainer";
 import Navbar from "../Navbar";
-import "./ProductContainer.css";
+import CartProduct from "./CartProduct";
 
-const Floral = () => {
-  const [product, setProduct] = useState([]);
+const Cart = () => {
+  const [cartProduct, setCartProduct] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const { currentUser } = useAuth();
 
+  let id = currentUser?.uid;
+
   useEffect(() => {
-    const getProducts = () => {
+    const getCartProducts = () => {
       const productsArray = [];
-      const path = `products-FLORAL`;
+      const path = `cart-${id}`;
 
       getDocs(collection(db, path))
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             productsArray.push({ ...doc.data(), id: doc.id });
           });
-          setProduct(productsArray);
+          setCartProduct(productsArray);
         })
         .catch((error) => {
           setErrorMsg(error.message);
         });
     };
 
-    getProducts();
+    getCartProducts();
   }, []);
 
   return (
     <div>
       <Navbar />
-      <div>
-        <h1>Floral</h1>
-      </div>
-      <div className="product-container">
-        {product.map((item) => (
-          <ProductContainer key={item.id} product={item} />
-        ))}
-      </div>
+      <h1>cart</h1>
+      {cartProduct
+        ? cartProduct.map((item) => (
+            <CartProduct
+              key={item.id}
+              product={item.product.product}
+            ></CartProduct>
+          ))
+        : "No cart Items"}
     </div>
   );
 };
 
-export default Floral;
+export default Cart;

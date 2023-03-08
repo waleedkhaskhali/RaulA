@@ -59,6 +59,7 @@ const Navbar = ({ scrollPosition }) => {
       await login(loginEmail, loginPassword);
     } catch (error) {
       setError(error);
+      console.log(error);
     }
 
     setLoading(false);
@@ -166,7 +167,10 @@ const Navbar = ({ scrollPosition }) => {
             venue bookings
           </Link>
         </ul>
-        <ul className={decorativeHover ? "decorativeLinks" : "hides"}>
+        <ul
+          className={decorativeHover ? "decorativeLinks" : "hides"}
+          onMouseLeave={() => setDecorativeHover(false)}
+        >
           <Link to="/candlelight" className="btmlink">
             candlelight
           </Link>

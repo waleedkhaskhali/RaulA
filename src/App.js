@@ -10,6 +10,7 @@ import Press from "./components/RaulAvila/Press";
 import RaulAvila from "./components/RaulAvila/RaulAvila";
 import AddProducts from "./components/AddProducts";
 import Floral from "./components/Raul/Products/Floral";
+import Cart from "./components/Raul/Cart/Cart";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
           <Route path="/" element={<Home />} />
           <Route path="/Home" element={<Raul />} />
           <Route path="/Floral" element={<Floral />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/Raul_Inc/Home" element={<RaulAvila />} />
           <Route path="/bio" element={<Bio />} />
           <Route path="/press" element={<Press />} />
