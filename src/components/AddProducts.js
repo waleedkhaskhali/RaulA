@@ -68,6 +68,7 @@ const AddProducts = () => {
             warranty,
             prodimage: url,
             keyspecs: keyspecs,
+            qty: 0,
           })
             .then(() => {
               setSuccessMsg("Product added successfully");

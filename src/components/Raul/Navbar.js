@@ -44,7 +44,7 @@ const Navbar = ({ scrollPosition }) => {
       setError("");
       setLoading(true);
       await register(registerEmail, registerPassword);
-      history.push("/cart");
+      history("/cart");
     } catch (error) {
       setError(error);
     }
@@ -52,7 +52,9 @@ const Navbar = ({ scrollPosition }) => {
     setLoading(false);
   };
 
-  const handleLoginSubmit = async () => {
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+
     try {
       setError("");
       setLoading(true);
@@ -62,6 +64,19 @@ const Navbar = ({ scrollPosition }) => {
       console.log(error);
     }
 
+    setLoading(false);
+  };
+
+  const handleLogout = async () => {
+    try {
+      setError("");
+      setLoading(true);
+      await logout();
+      setLoginClick(false);
+      setRegisterClick(false);
+    } catch (error) {
+      setError(error);
+    }
     setLoading(false);
   };
 
@@ -126,7 +141,7 @@ const Navbar = ({ scrollPosition }) => {
                 </span>
                 <br />
                 <span>
-                  <a href="#" onClick={logout}>
+                  <a href="#" onClick={handleLogout}>
                     Logout
                   </a>
                 </span>
@@ -235,12 +250,7 @@ const Navbar = ({ scrollPosition }) => {
                   }}
                 />
               </p>
-              <button
-                value="Login"
-                name="login"
-                type="submit"
-                onClick={handleRegisterSubmit}
-              >
+              <button value="Login" name="login" type="submit">
                 Register
               </button>
             </div>
@@ -256,7 +266,7 @@ const Navbar = ({ scrollPosition }) => {
           </div>
         </form>
       </div>
-      <div id="id01" className={loginClick ? "modal" : "hides"}>
+      <div id="id01" className={loginClick && !currentUser ? "modal" : "hides"}>
         <form class="modal-content animate" onSubmit={handleLoginSubmit}>
           <div class="imgcontainer">
             <p> LOGIN</p>
@@ -292,12 +302,7 @@ const Navbar = ({ scrollPosition }) => {
                   }}
                 />
               </p>
-              <button
-                value="Login"
-                name="login"
-                type="submit"
-                onClick={handleLoginSubmit}
-              >
+              <button value="Login" name="login" type="submit">
                 Login
               </button>
             </div>

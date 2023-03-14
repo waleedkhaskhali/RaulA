@@ -1,0 +1,29 @@
+.cart-page{
+    position: relative;
+    top: 25vh;
+    margin: 0 500px;
+    
+}
+
+.cart-container{
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+ background-color: rgba(0, 0, 0, 0.2);
+ padding-top: 100px;
+ height: 35vh;
+}
+.cart-title{
+    background: -webkit-linear-gradient(#f8f18e,#d6a55b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+.cartproduct-image{
+    height: 35vh;
+    width: 15vw;
+}
+
+.cart-price{
+
+}

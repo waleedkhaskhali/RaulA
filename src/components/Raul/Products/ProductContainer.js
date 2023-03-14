@@ -1,22 +1,41 @@
-import React, { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { db } from "../../../firebase-config";
 import "./ProductContainer.css";
 
 const ProductContainer = (product) => {
+  const [localCart, setLocalCart] = useState([]);
+  const localstorag = { ...localStorage };
+
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const { currentUser } = useAuth();
+  let id = currentUser?.uid;
   let p = product.product;
-  let id = currentUser.uid;
+
   const addToCart = () => {
+    if (!currentUser && !id) {
+      const productArray = localCart;
+      const localProductExist = productArray.find((item) => item.id === p.id);
+
+      if (localProductExist) {
+        let updatedQty = p.qty++;
+        localStorage.setItem(
+          `product${localProductExist?.id}`,
+          JSON.stringify(p)
+        );
+      } else {
+        localStorage.setItem(`product${p.id}`, JSON.stringify(p));
+        productArray.push(p);
+        setLocalCart(productArray);
+      }
+    }
+
     if (currentUser) {
-      console.log(id);
       addDoc(collection(db, `cart-${id}`), {
         product,
-        quantity: 1,
       })
         .then(() => {
           setSuccessMsg("Product added to cart");
@@ -26,9 +45,6 @@ const ProductContainer = (product) => {
           setErrorMsg(error.message);
           console.log(errorMsg);
         });
-    } else {
-      setErrorMsg("You need to login first");
-      console.log(errorMsg);
     }
   };
 

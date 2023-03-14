@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
+import "./Cart.css";
 
 const CartProduct = (product) => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -10,20 +11,28 @@ const CartProduct = (product) => {
   let id = currentUser?.uid;
 
   return (
-    <div className="product-div">
-      <div>
-        <a href={`/product/${p.producttype}/${p.id}`}>
-          <img src={p.prodimage} className="product-image"></img>
-        </a>
-      </div>
-      <Link to={id ? "/checkout" : "/login"}>Checkout</Link>
-      <div>
-        <a href={`/product/${p.producttype}/${p.id}`}>
-          <button className="product-title">{p.producttitle}</button>
-        </a>
-      </div>
-      <div>
-        <p className="price">${p.price}</p>
+    <div className="cart-page">
+      <div className="cart-container">
+        <div>
+          <a href={`/product/${p.producttype}/${p.id}`}>
+            <img src={p.prodimage} className="cartproduct-image"></img>
+          </a>
+        </div>
+        <div>
+          <a
+            href={`/product/${p.producttype}/${p.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            <a className="cart-title">{p.producttitle}</a>
+          </a>
+        </div>
+        <div>
+          <p>Quantity: {p.qty}</p>
+          <button>Update Cart</button>
+        </div>
+        <div>
+          <p className="cart-price">${p.price}</p>
+        </div>
       </div>
     </div>
   );
